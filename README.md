@@ -11,7 +11,7 @@ The code was prepared targeting .NET 8.0 in Visual Studio 2022. Below we briefly
 
 ## Integer Methods
 
-Defines the ```Partition``` class which stores a partition of $n$ as a non-decreasing list of positive integers whose sum is equal to $n$. We implement a simple hash function for memoization by partitions. Defines the ```BigRational``` class which handles rational number arithmetic and stores the numerator and denominator as [BigIntegers](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=net-8.0) to avoid overflow errors.
+Defines the ```Partition``` class which stores a partition of $n$ as a non-decreasing list of positive integers whose sum is equal to $n$. We implement a simple hash function for memoization. Defines the ```BigRational``` class which handles rational number arithmetic and stores the numerator and denominator as [BigIntegers](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=net-8.0) to avoid overflow errors.
 
 ## Polynomials
 
