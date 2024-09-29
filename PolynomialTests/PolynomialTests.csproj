@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IntegerMethods\IntegerMethods.csproj" />
-    <ProjectReference Include="..\Polynomial\Polynomial.csproj" />
+    <ProjectReference Include="..\Polynomials\Polynomials.csproj" />
   </ItemGroup>
 
   <ItemGroup>

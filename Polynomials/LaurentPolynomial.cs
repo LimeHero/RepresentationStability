@@ -1,6 +1,4 @@
 ﻿using IntegerMethods;
-using System;
-using System.Collections.Generic;
 
 namespace Polynomials
 {
@@ -32,7 +30,7 @@ namespace Polynomials
         public LaurentPolynomial()
         {
             Lead = 0;
-            Coefs = new List<BigRational>() { new BigRational() };
+            Coefs = [new BigRational()];
         }
 
         /// <summary>
@@ -54,7 +52,7 @@ namespace Polynomials
         /// <summary>
         /// Constructor from a normal polynomial
         /// </summary>
-        public LaurentPolynomial(Polynomial p) : this(0, p.coefs)
+        public LaurentPolynomial(Polynomial p) : this(0, p.Coefs)
         {
         }
 

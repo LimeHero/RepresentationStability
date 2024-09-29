@@ -1,7 +1,4 @@
-﻿using System;
-using IntegerMethods;
-using System.Collections.Generic;
-using System.Text;
+﻿using IntegerMethods;
 
 namespace Polynomials
 {
@@ -13,14 +10,14 @@ namespace Polynomials
         /// <summary>
         /// Must always have at least one element
         /// </summary>
-        public List<BigRational> coefs { private set; get; }
+        public List<BigRational> Coefs { private set; get; }
 
         /// <summary>
         /// Constructs the zero polynomial
         /// </summary>
         public Polynomial()
         {
-            coefs = new List<BigRational>() { new BigRational() };
+            Coefs = [new BigRational()];
         }
 
         /// <summary>
@@ -28,13 +25,13 @@ namespace Polynomials
         /// </summary>
         public Polynomial(BigRational c)
         {
-            coefs = new List<BigRational>() { c };
+            Coefs = [c];
         }
 
         /// <summary>
         /// Copy constuctor
         /// </summary>
-        public Polynomial(Polynomial p) : this(p.coefs)
+        public Polynomial(Polynomial p) : this(p.Coefs)
         {
         }
 
@@ -44,19 +41,19 @@ namespace Polynomials
         /// <param name="coefs"></param>
         public Polynomial(List<BigRational> coefss)
         {
-            coefs = new List<BigRational>(coefss);
-            for (int i = coefs.Count - 1; i > 0; i--)
+            Coefs = new(coefss);
+            for (int i = Coefs.Count - 1; i > 0; i--)
             {
-                if (coefs[i].A == 0)
+                if (Coefs[i].A == 0)
                 {
-                    coefs.RemoveAt(i);
+                    Coefs.RemoveAt(i);
                 }
                 else
                     return;
             }
 
-            if (coefs.Count == 0)
-                coefs.Add(new BigRational());
+            if (Coefs.Count == 0)
+                Coefs.Add(new BigRational());
         }
 
         /// <summary>
@@ -65,20 +62,20 @@ namespace Polynomials
         /// <param name="coefs"></param>
         public Polynomial(List<int> coefss)
         {
-            coefs = new List<BigRational>();
+            Coefs = new List<BigRational>();
             for (int i = 0; i < coefss.Count; i++)
-                coefs.Add(new BigRational(coefss[i], 1));
+                Coefs.Add(new BigRational(coefss[i], 1));
 
-            for (int i = coefs.Count - 1; i > 0; i--)
+            for (int i = Coefs.Count - 1; i > 0; i--)
             {
-                if (coefs[i].A == 0)
-                    coefs.RemoveAt(i);
+                if (Coefs[i].A == 0)
+                    Coefs.RemoveAt(i);
                 else
                     break;
             }
 
-            if (coefs.Count == 0)
-                coefs.Add(new BigRational());
+            if (Coefs.Count == 0)
+                Coefs.Add(new BigRational());
         }
 
         /// <summary>
@@ -88,7 +85,7 @@ namespace Polynomials
         /// <returns></returns>
         public int Degree()
         {
-            return coefs.Count - 1;
+            return Coefs.Count - 1;
         }
 
         /// <summary>
@@ -99,12 +96,12 @@ namespace Polynomials
         /// <returns></returns>
         public static Polynomial operator +(Polynomial f, Polynomial g)
         {
-            List<BigRational> coeffs = new List<BigRational>(g.coefs);
-            for (int i = 0; i < f.coefs.Count; i++)
+            List<BigRational> coeffs = new List<BigRational>(g.Coefs);
+            for (int i = 0; i < f.Coefs.Count; i++)
             {
                 if (i >= coeffs.Count)
                     coeffs.Add(new BigRational());
-                coeffs[i] += f.coefs[i];
+                coeffs[i] += f.Coefs[i];
             }
 
             return new Polynomial(coeffs);
@@ -118,12 +115,12 @@ namespace Polynomials
         /// <returns></returns>
         public static Polynomial operator -(Polynomial f, Polynomial g)
         {
-            List<BigRational> coeffs = new List<BigRational>(f.coefs);
-            for (int i = 0; i < g.coefs.Count; i++)
+            List<BigRational> coeffs = new List<BigRational>(f.Coefs);
+            for (int i = 0; i < g.Coefs.Count; i++)
             {
                 if (i >= coeffs.Count)
                     coeffs.Add(new BigRational());
-                coeffs[i] -= g.coefs[i];
+                coeffs[i] -= g.Coefs[i];
             }
 
             return new Polynomial(coeffs);
@@ -139,7 +136,7 @@ namespace Polynomials
         {
             Polynomial output = new Polynomial(f);
 
-            output.coefs[0] -= k;
+            output.Coefs[0] -= k;
 
             return output;
         }
@@ -153,7 +150,7 @@ namespace Polynomials
         public static Polynomial operator +(Polynomial p, BigRational q)
         {
 
-            List<BigRational> coeffs = new List<BigRational>(p.coefs);
+            List<BigRational> coeffs = new List<BigRational>(p.Coefs);
 
             if (coeffs.Count == 0)
                 coeffs.Add(new BigRational());
@@ -172,7 +169,7 @@ namespace Polynomials
         public static Polynomial operator *(BigRational c, Polynomial p)
         {
 
-            List<BigRational> coeffs = new List<BigRational>(p.coefs);
+            List<BigRational> coeffs = new List<BigRational>(p.Coefs);
             for (int i = 0; i < coeffs.Count; i++)
                 coeffs[i] *= c;
 
@@ -188,7 +185,7 @@ namespace Polynomials
         public static Polynomial operator *(int c, Polynomial p)
         {
 
-            List<BigRational> coeffs = new List<BigRational>(p.coefs);
+            List<BigRational> coeffs = new List<BigRational>(p.Coefs);
             for (int i = 0; i < coeffs.Count; i++)
                 coeffs[i] *= c;
 
@@ -204,7 +201,7 @@ namespace Polynomials
         public static Polynomial operator *(Polynomial p, int c)
         {
 
-            List<BigRational> coeffs = new List<BigRational>(p.coefs);
+            List<BigRational> coeffs = new List<BigRational>(p.Coefs);
             for (int i = 0; i < coeffs.Count; i++)
                 coeffs[i] *= c;
 
@@ -223,9 +220,9 @@ namespace Polynomials
             for (int i = 0; i < (f.Degree() + 1) + (g.Degree() + 1); i++)
                 coeffs.Add(new BigRational());
 
-            for (int i = 0; i < f.coefs.Count; i++)
-                for (int j = 0; j < g.coefs.Count; j++)
-                    coeffs[i + j] += f.coefs[i] * g.coefs[j];
+            for (int i = 0; i < f.Coefs.Count; i++)
+                for (int j = 0; j < g.Coefs.Count; j++)
+                    coeffs[i + j] += f.Coefs[i] * g.Coefs[j];
 
             return new Polynomial(coeffs);
         }
@@ -243,22 +240,22 @@ namespace Polynomials
         {
             if (g.IsZero())
                 throw new Exception("CANT DIVIDE BY ZERO!");
-            Polynomial r = new Polynomial(f.coefs);
+            Polynomial r = new Polynomial(f.Coefs);
 
             //q is not actually a well formed polynomial, but it doesn't matter here
             //when q is returned, it is well formed
             Polynomial q = new Polynomial();
-            while (q.coefs.Count < r.Degree() - g.Degree() + 1)
-                q.coefs.Add(new BigRational());
+            while (q.Coefs.Count < r.Degree() - g.Degree() + 1)
+                q.Coefs.Add(new BigRational());
 
             while (r.Degree() >= g.Degree() && !r.IsZero())
             {
-                q.coefs[r.Degree() - g.Degree()] = r.coefs[r.coefs.Count - 1] / g.coefs[g.coefs.Count - 1];
+                q.Coefs[r.Degree() - g.Degree()] = r.Coefs[r.Coefs.Count - 1] / g.Coefs[g.Coefs.Count - 1];
 
                 r = f - q * g;
             }
 
-            return new Tuple<Polynomial, Polynomial>(new Polynomial(q.coefs), r);
+            return new Tuple<Polynomial, Polynomial>(new Polynomial(q.Coefs), r);
         }
 
         /// <summary>
@@ -293,10 +290,10 @@ namespace Polynomials
         /// </summary>
         public void Normalize()
         {
-            BigRational r = coefs[Degree()];
+            BigRational r = Coefs[Degree()];
 
             for (int i = 0; i <= Degree(); i++)
-                coefs[i] /= r;
+                Coefs[i] /= r;
         }
 
         // for memoization
@@ -413,7 +410,7 @@ namespace Polynomials
                 return false;
 
             for (int i = 0; i <= f.Degree(); i++)
-                if (f.coefs[i] != g.coefs[i])
+                if (f.Coefs[i] != g.Coefs[i])
                     return false;
 
             return true;
@@ -461,19 +458,19 @@ namespace Polynomials
         {
             string output = "";
             bool firstTerm = true;
-            for (int i = 0; i < coefs.Count; i++)
+            for (int i = 0; i < Coefs.Count; i++)
             {
-                if (coefs[i].A == 0)
+                if (Coefs[i].A == 0)
                     continue;
 
                 if (firstTerm)
                 {
                     firstTerm = false;
-                    output += TermToString(i, coefs[i]);
+                    output += TermToString(i, Coefs[i]);
                     continue;
                 }
 
-                output += " + " + TermToString(i, coefs[i]);
+                output += " + " + TermToString(i, Coefs[i]);
             }
 
             if (output.Equals(""))
@@ -508,7 +505,7 @@ namespace Polynomials
         /// <returns></returns>
         public bool IsZero()
         {
-            return Degree() == 0 && coefs[0].A == 0;
+            return Degree() == 0 && Coefs[0].A == 0;
         }
     }
 }

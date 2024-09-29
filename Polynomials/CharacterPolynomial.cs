@@ -25,7 +25,7 @@ namespace Polynomials
         {
             if (_terms.Count != _coefs.Count) throw new ArgumentException("Terms and Coefs must have same length!");
 
-            Terms = new();
+            Terms = [];
             Coefs = new(_coefs);
 
             for (int i = 0; i < _coefs.Count; i++)
@@ -58,8 +58,8 @@ namespace Polynomials
         /// <param name="r"></param>
         public CharacterPolynomial(BigRational r)
         {
-            Terms = new();
-            Coefs = new();
+            Terms = [];
+            Coefs = [];
 
             Terms.Add(new());
             Coefs.Add(r);
@@ -70,8 +70,8 @@ namespace Polynomials
         /// </summary>
         public CharacterPolynomial()
         {
-            Terms = new();
-            Coefs = new();
+            Terms = [];
+            Coefs = [];
         }
 
         /// <summary>

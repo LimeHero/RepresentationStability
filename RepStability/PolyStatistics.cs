@@ -12,7 +12,7 @@ namespace RepStability
         // Stores previous results of 
         // The second integer here is storing the maxDegree previously computed.
         // If we lower the maxDegree from the previous computation, we have to recompute it.
-        private static readonly Dictionary<Partition, Tuple<LaurentPolynomial, int>> prevResults = new();
+        private static readonly Dictionary<Partition, Tuple<LaurentPolynomial, int>> prevResults = [];
         /// <summary>
         /// Given a CharacterPolynomial chi, computes the polynomial statistic 
         /// \lim_{n\to\infty} q^{-n} \sum_{f \in Conf_n(\F_q)} P(f)
@@ -38,11 +38,11 @@ namespace RepStability
 
                 // memoization (checking if already computed)
                 Partition part = terms[i];
-                if (prevResults.ContainsKey(part))
+                if (prevResults.TryGetValue(part, out Tuple<LaurentPolynomial, int>? value))
                 {
-                    if (maxDegree <= prevResults[part].Item2)
+                    if (maxDegree <= value.Item2)
                     {
-                        nextTerm = coefs[i] * prevResults[part].Item1;
+                        nextTerm = coefs[i] * value.Item1;
                         nextTerm.RoundToNthDegree(maxDegree);
                         output += nextTerm;
 
@@ -58,7 +58,7 @@ namespace RepStability
 
                     // memoization on individual binomial terms
                     {
-                        List<int> termList = new(); for (int a = 0; a < cycles[j]; a++) termList.Add(j + 1);
+                        List<int> termList = []; for (int a = 0; a < cycles[j]; a++) termList.Add(j + 1);
                         Partition _part = new(termList);
                         if (prevResults.ContainsKey(_part))
                         {
@@ -90,7 +90,7 @@ namespace RepStability
             }
 
             // multiply by 1 - z
-            output *= new LaurentPolynomial(0, new() { 1, -1 });
+            output *= new LaurentPolynomial(0, [1, -1]);
             output.RoundToNthDegree(maxDegree);
 
             return output;
@@ -121,7 +121,7 @@ namespace RepStability
                 BigRational coef = Partition.CoefOfPowerSeries(l, j);
 
 
-                powSeries += new LaurentPolynomial(l, new() { coef });
+                powSeries += new LaurentPolynomial(l, [coef]);
             }
 
             // formally raise pow_series to ith power

@@ -47,7 +47,7 @@ public class MainMethod
     /// <param name="b"></param>
     public static void SaveToResultsCsv(int a, int b, int maxDegree)
     {
-        List<string> lines = new();
+        List<string> lines = [];
         string s = "perms,";
         for (int i = 0; i < maxDegree; i++)
             s += "i=" + i + ",";

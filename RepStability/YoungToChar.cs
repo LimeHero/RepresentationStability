@@ -33,7 +33,7 @@ namespace RepStability
                 // all partitions mu with |mu| = i such that part - mu is a vertical strip,
                 // i.e., |part| - i boxes can be added to mu (with never two on the same row)
                 // to be equal to k
-                List<Partition> all_mu = new();
+                List<Partition> all_mu = [];
                 // check if k - mu is a vertical strip, if so add it to all_mu
                 foreach (Partition rho_part in Partition.AllPartitions(i))
                 {
@@ -88,7 +88,7 @@ namespace RepStability
             return result;
         }
 
-        private static readonly Dictionary<Tuple<Partition, Partition>, BigRational> irreducible_character_prev_values = new();
+        private static readonly Dictionary<Tuple<Partition, Partition>, BigRational> irreducible_character_prev_values = [];
         /// <summary>
         /// Returns the value of the character of the irreducible representation given by mu
         /// evaluated at the conjugacy class of S_n given by the partition rho.
@@ -128,7 +128,7 @@ namespace RepStability
             // longer than the previous.
             for (int start_of_bs = 0; start_of_bs < mu_list.Count; start_of_bs++)
             {
-                List<int> bs = new();
+                List<int> bs = [];
 
                 int i = start_of_bs;
                 int bs_sum = 0;
@@ -165,8 +165,8 @@ namespace RepStability
                 int sgn = 1; if ((bs.Count % 2) == 0) sgn = -1;
 
                 // otherwise, delete the border strip from mu, remove rho[0], and recurse
-                List<int> new_rho = new(); for (int j = 1; j < rho_list.Count; j++) new_rho.Add(rho_list[j]);
-                List<int> new_mu = new(); for (int j = 0; j < mu_list.Count; j++) new_mu.Add(mu_list[j]);
+                List<int> new_rho = []; for (int j = 1; j < rho_list.Count; j++) new_rho.Add(rho_list[j]);
+                List<int> new_mu = []; for (int j = 0; j < mu_list.Count; j++) new_mu.Add(mu_list[j]);
                 for (int j = 0; j < bs.Count; j++) new_mu[j + start_of_bs] -= bs[j];
 
                 rslt += sgn * IrreducibleCharacter(new(new_mu), new(new_rho));

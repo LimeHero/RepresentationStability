@@ -1,26 +1,21 @@
-# RepresentationStabilityComputations
-Code base to calculate limiting multiplicites of families of irreducible representations in the cohomology of complex configuration space. 
-In "MainMethod.cs", there are a number of useful computations contained in different code blocks. 
-
-The primary function of the code is provided by the function YoungToPoly(part, smallestDegree), which given a partition of n (a list of decreasing positive integers
-with sum n) returns an infinite power series in $q^{-1}$ representing the stable multiplicity of the family of irreducible partitions given by "part" in the
-cohomology of complex configuration space. For instance, the empty partition [] returns the stable multiplicity of the trivial representation, and the partition [1]
-of 1 returns the stable multiplicity of the standard representation. See https://math.uchicago.edu/~farb/papers/Pn-FqT.pdf for an introduction to representation
-stability and what this power series represents. 
-The infinite power series is expanded out to the optional "smallestDegree" term, so it will be cut off at (and including) $q^\text{-smallestDegree}$.
-
-# Abstract:
-Representation stability was introduced to study mathematical structures which stabilize when viewed from a representation theoretic framework. 
-The instance of representation stability studied in this project is that of ordered complex configuration space, denoted $PConf_n(\mathbb{C})$:
-
-$$PConf_n(\mathbb{C}) := \\{ (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \ | \ x_i \neq x_j \\}$$
-
-$PConf_n(\mathbb{C})$ has a natural $S_n$ action by permuting its coordinates which gives the cohomology groups $H^i(PConf_n(\mathbb{C});\mathbb{Q})$ the structure of an $S_n$ representation. 
-The cohomology of $PConf_n(\mathbb{C})$ \textit{stabilizes} as $n$ tends toward infinity when viewed as a family of $S_n$ representations. From previous work, there is an 
-explicit description for $H^i(PConf_n(\mathbb{C});\mathbb{Q})$ as a direct sum of induced representations for any $i, n$, but this description does not explain the behavior of 
-families of irreducible representations as $n\to\infty$. We implement an algorithm which, given a Young Tableau, computes the cohomological degrees where the 
-corresponding family of irreducible representations appears stably as $n\to\infty$. Previously, these values were known for only a few Young Tableaus and cohomological 
-degrees. Using this algorithm, results have been found for all Young Tableau with up to 8 boxes and certain Tableau with more, which has led us to conjectures based on 
-the data collected.
+# Representation Stability Computations
 
 
+#
+
+Below we briefly describe each project file.
+
+## Integer Methods
+
+Defines the ```Partition``` class which stores a partition of n as a non-decreasing list of positive integers whose sum is equal to n. Defines the ```BigRational``` class which handles rational number arithmetic and stores the numerator and denominator as [BigIntegers](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=net-8.0) to avoid overflow errors.
+
+## Polynomials
+
+Defines the ```LaurentPolynomial```, ```Polynomial```, and ```CharacterPolynomial``` classes. Note that character polynomials are stored as rational linear combinations in the [binomial basis](https://arxiv.org/pdf/2001.04112#page=4).
+
+
+## RepStability
+
+Defines ```YoungToChar.PartToCharPoly``` which takes in a partition $\lambda$ and returns the character polynomial $\chi^\lambda$ of the family of irreducibles $V(\lambda)$ based on example 1.7.14 in [Macdonald](https://math.berkeley.edu/~corteel/MATH249/macdonald.pdf#page=100). Note that while computing $\chi^\lambda$ we determine the character table of $S_n$ for all $n \leq |\lambda|$ via the recursive [Murnaghan-Nakayama rule](https://en.wikipedia.org/wiki/Murnaghan%E2%80%93Nakayama_rule). 
+
+This project also contains ```PolyStatistics.CharPolyToPowSeries``` which takes as input a characteristic polynomial $\chi$ and returns the convergent polynomial statistic $\lim_{n\to\infty}q^{-n}\sum_{f \in \Conf_n(\F_q)} \chi(f)$ as a formal power series in $z = q^{-1}$ via equation 2.11 from [Chen](https://arxiv.org/pdf/1603.03931#page=11). Note that we use extensive memoization

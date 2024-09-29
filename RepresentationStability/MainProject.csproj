@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IntegerMethods\IntegerMethods.csproj" />
-    <ProjectReference Include="..\Polynomial\Polynomial.csproj" />
+    <ProjectReference Include="..\Polynomials\Polynomials.csproj" />
     <ProjectReference Include="..\RepStability\RepStability.csproj" />
   </ItemGroup>
 
