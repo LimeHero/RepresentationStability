@@ -226,6 +226,17 @@ namespace IntegerMethods
         /// <returns></returns>
         public List<int> ToDecimal(int n)
         {
+            if (A == 0)
+            {
+
+                List<int> digList = [];
+                for (int i = 0; i <= n; i++)
+                {
+                    digList.Add(0);
+                }
+
+                return digList;
+            }
             List<int> digitList = [];
             //the first value of digitlist - see function description
             int exponentOffset = 0;

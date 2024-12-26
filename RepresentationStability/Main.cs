@@ -11,15 +11,16 @@ public class MainMethod
     static void Main()
     {
         int maxDegree = 50;
-        SaveToResultsCsv(1, 24, maxDegree);
+        SaveToResultsCsv(1, 0, maxDegree);
 
-        int aBoxes = 0;
-        for (int i = 1; i < aBoxes; i++)
+        int aBoxes = 10;
+        for (int k = 1; k < aBoxes; k++)
         {
-            foreach (Partition part in Partition.AllPartitions(i))
+            foreach (Partition part in Partition.AllPartitions(k))
             {
-                Console.WriteLine(part);
-                Console.WriteLine(YoungToPoly(part, maxDegree));
+                Console.WriteLine(part); 
+                LaurentPolynomial rslt = YoungToPoly(part, maxDegree);
+                Console.WriteLine(rslt);
                 Console.WriteLine();
             }
         }

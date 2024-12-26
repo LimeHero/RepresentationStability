@@ -98,7 +98,7 @@ namespace Polynomials
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        private BigRational GetCoefAt(int index)
+        public BigRational GetCoefAt(int index)
         {
             if (index > Degree())
                 return 0;
