@@ -18,7 +18,7 @@ Defines the ```Partition``` class which stores a partition of $n$ as a non-decre
 
 ## Polynomials
 
-Defines the ```LaurentPolynomial```, ```Polynomial```, and ```CharacterPolynomial``` classes. Note that character polynomials are stored as rational linear combinations in the [binomial basis](https://arxiv.org/pdf/2001.04112#page=4).
+Defines the ```LaurentPolynomial```, ```Polynomial```, and ```CharacterPolynomial``` classes. Also defines ```SymmetricPolynomial``` and ```RationalPolynomial``` classes, although these two are not needed for current functionality. Note that character polynomials are stored as rational linear combinations in the [binomial basis](https://arxiv.org/pdf/2001.04112#page=4).
 
 
 ## RepStability
