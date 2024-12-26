@@ -8,7 +8,9 @@ For an interactive lookup table of this data visit [my website](https://www.math
 
 # Code Details
 
-The code was prepared targeting .NET 8.0 in Visual Studio 2022. Below we briefly describe each project file.
+The code was prepared targeting .NET 8.0 in Visual Studio 2022. ```MainMethod/Main.cs``` is the execution point and contains a helper method for saving the computational output to ```results.csv```. Note that the code has been optimized through memoization to compute ```YoungToPoly``` for all $|\lambda| \leq n$ for some $n$. In particular, once $\text{YoungToPoly}(\lambda)$ has been computed for some $\lambda$, it is fast to compute $\text{YoungToPoly}(\lambda')$ for any $|\lambda'| < |\lambda|$. 
+
+Below we briefly describe each project file.
 
 ## Integer Methods
 
