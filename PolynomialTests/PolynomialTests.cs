@@ -12,8 +12,8 @@ namespace PolynomialTests
             Polynomial poly1 = new (4);
             Polynomial poly2 = new (5);
 
-            Assert.IsTrue(poly1.coefs[0] * poly2.coefs[0] == new BigRational(20, 1));
-            Assert.IsTrue(poly1.coefs[0] / poly2.coefs[0] == new BigRational(4, 5));
+            Assert.IsTrue(poly1.Coefs[0] * poly2.Coefs[0] == new BigRational(20, 1));
+            Assert.IsTrue(poly1.Coefs[0] / poly2.Coefs[0] == new BigRational(4, 5));
         }
 
         [TestMethod]

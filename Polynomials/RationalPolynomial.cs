@@ -1,7 +1,7 @@
 ﻿using IntegerMethods;
 using Polynomials;
 
-namespace Deprecated
+namespace Polynomials
 {
     /// <summary>
     /// Ratio of polynomials of the form a/b, for a, b instances of the Polynomial class -
@@ -10,14 +10,14 @@ namespace Deprecated
     class RationalPolynomial
     {
         //fraction is a/b
-        public Polynomial a { get; private set; }
-        public Polynomial b { get; private set; }
+        public Polynomial A { get; private set; }
+        public Polynomial B { get; private set; }
 
         /// <summary>
         /// Copy constructor
         /// </summary>
         /// <param name="p"></param>
-        public RationalPolynomial(RationalPolynomial p) : this(new Polynomial(p.a), new Polynomial(p.b))
+        public RationalPolynomial(RationalPolynomial p) : this(new Polynomial(p.A), new Polynomial(p.B))
         {
         }
 
@@ -31,17 +31,17 @@ namespace Deprecated
             if (b.IsZero())
                 throw new ArgumentException("NO zero denominator");
 
-            this.a = new Polynomial(a);
-            this.b = new Polynomial(b);
+            this.A = new Polynomial(a);
+            this.B = new Polynomial(b);
 
             if (a.IsZero())
-                this.b = new Polynomial(1);
+                this.B = new Polynomial(1);
 
             //first term should be positive
-            if (b.coefs[b.Degree()].A < 0)
+            if (b.Coefs[b.Degree()].A < 0)
             {
-                this.b *= -1;
-                this.a *= -1;
+                this.B *= -1;
+                this.A *= -1;
             }
         }
 
@@ -60,7 +60,7 @@ namespace Deprecated
         /// <returns></returns>
         public static RationalPolynomial operator +(RationalPolynomial m, RationalPolynomial n)
         {
-            return new RationalPolynomial(m.a * n.b + m.b * n.a, n.b * m.b);
+            return new RationalPolynomial(m.A * n.B + m.B * n.A, n.B * m.B);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Deprecated
         /// <returns></returns>
         public static RationalPolynomial operator -(RationalPolynomial m, RationalPolynomial n)
         {
-            return new RationalPolynomial(m.a * n.b - m.b * n.a, n.b * m.b);
+            return new RationalPolynomial(m.A * n.B - m.B * n.A, n.B * m.B);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Deprecated
         /// <returns></returns>
         public static RationalPolynomial operator *(RationalPolynomial m, RationalPolynomial n)
         {
-            return new RationalPolynomial(m.a * n.a, m.b * n.b);
+            return new RationalPolynomial(m.A * n.A, m.B * n.B);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Deprecated
         /// <returns></returns>
         public static RationalPolynomial operator *(int m, RationalPolynomial n)
         {
-            return new RationalPolynomial(m * n.a, n.b);
+            return new RationalPolynomial(m * n.A, n.B);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Deprecated
         /// <returns></returns>
         public static RationalPolynomial operator *(RationalPolynomial m, int n)
         {
-            return new RationalPolynomial(n * m.a, m.b);
+            return new RationalPolynomial(n * m.A, m.B);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Deprecated
         /// <returns></returns>
         public static RationalPolynomial operator /(RationalPolynomial m, RationalPolynomial n)
         {
-            return new RationalPolynomial(m.a * n.b, m.b * n.a);
+            return new RationalPolynomial(m.A * n.B, m.B * n.A);
         }
 
         /// <summary>
@@ -124,9 +124,9 @@ namespace Deprecated
         /// <returns></returns>
         public override string ToString()
         {
-            if (b.coefs.Count == 0 && b.coefs[0].A == 1)
-                return "" + a;
-            return "(" + a + ") / (" + b + ")";
+            if (B.Coefs.Count == 0 && B.Coefs[0].A == 1)
+                return "" + A;
+            return "(" + A + ") / (" + B + ")";
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Deprecated
         /// <returns></returns>
         public static bool operator ==(RationalPolynomial m, RationalPolynomial n)
         {
-            return m.a * n.b == n.a * m.b;
+            return m.A * n.B == n.A * m.B;
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Deprecated
         /// <returns></returns>
         public static bool operator !=(RationalPolynomial m, RationalPolynomial n)
         {
-            return m.a * n.b != n.a * m.b;
+            return m.A * n.B != n.A * m.B;
         }
 
         /// <summary>
@@ -179,16 +179,16 @@ namespace Deprecated
         /// </summary>
         public void Reduce()
         {
-            Polynomial GCD = Polynomial.GCD(a, b);
+            Polynomial GCD = Polynomial.GCD(A, B);
 
             //remainder should be zero!
-            a = (a / GCD).Item1;
-            b = (b / GCD).Item1;
+            A = (A / GCD).Item1;
+            B = (B / GCD).Item1;
 
-            BigRational r = new BigRational(1, 1) / a.coefs[a.Degree()];
+            BigRational r = new BigRational(1, 1) / A.Coefs[A.Degree()];
 
-            a = r * a;
-            b = r * b;
+            A = r * A;
+            B = r * B;
         }
     }
 }

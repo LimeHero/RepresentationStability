@@ -1,9 +1,8 @@
-﻿using IntegerMethods;
+﻿
+using IntegerMethods;
 using Polynomials;
-using Deprecated;
-using RepStability;
 
-namespace DeprecatedTests
+namespace PolynomialTests
 {
     [TestClass]
     public class SymmetricPolynomialTests

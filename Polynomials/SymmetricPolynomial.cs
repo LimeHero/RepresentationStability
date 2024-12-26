@@ -1,7 +1,7 @@
 ﻿using IntegerMethods;
 using System.Numerics;
 
-namespace Deprecated
+namespace Polynomials
 {
     /// <summary>
     /// Class representing a symmetric polynomial in an arbitrary number of variables (n -> infty)
