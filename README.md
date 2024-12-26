@@ -1,10 +1,10 @@
 # Representation Stability Computations
 
-Computes the multiplicty of a family of irreducibles in the stable cohomology of complex configuration space. Borrowing notation from [Farb](https://arxiv.org/abs/1404.4065), the function ```YoungToPoly``` returns $d_i(\lambda)$ for $0 \leq i \leq maxDegree$ as the coefficients of a formal power series in $z$. 
+Computes the multiplicty of a family of irreducibles in the stable cohomology of complex configuration space. Borrowing notation from [Farb](https://arxiv.org/abs/1404.4065), the function ```YoungToPoly``` takes a Young diagram $\lambda$ and nonnegative integer $maxDegree$ as input and returns $d_i(\lambda)$ for $0 \leq i \leq maxDegree$ as the coefficients of a formal power series in $z^{-1}$. 
 
-In the *Data* folder we include a .csv file of the coefficients $d_i(\lambda)$ for $0 \leq i \leq 50$ and all Young diagrams $\la$ with 23 or fewer boxes. We also include a .csv file which contains the stable decomposition
+The __Data__ folder includes the ```results.csv``` file of the coefficients $d_i(\lambda)$ for $0 \leq i \leq 50$ and all Young diagrams $\lambda$ with 23 or fewer boxes. It also includes the ```stable.csv``` file of the stable decomposition
 of $H^i(\text{PConf}_n(\mathbb{C});\mathbb{C})$ for $0 \leq i \leq 11$. 
-For an interactive lookup table of this data visit [my website](https://www.math.ucla.edu/~emilg/repstab.html). For implementation details and background, see [my paper](https://TODO).
+For an interactive lookup table of this data visit [my website](https://www.math.ucla.edu/~emilg/repstab.html). For implementation details and background, see [my preprint](https://arxiv.org/abs/2411.11337).
 
 # Code Details
 
